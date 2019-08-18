@@ -1,13 +1,20 @@
 import React from "react";
+import Modals from "./Modals";
 
-const countries = ({ countries, loading }) => {
+const countries = ({
+  countries,
+  loading,
+  modalIsOpen,
+  toggleModalOpen,
+  toggleModalClose
+}) => {
   if (loading) {
     return <h2>Loading....</h2>;
   }
   return (
     <ul className="countryGroup">
-      {countries.map(countries => (
-        <div className="country" key={countries.numericCode}>
+      {countries.map((countries, key) => (
+        <div className="country" key={key} onClick={() => toggleModalOpen()}>
           <li className="list-group-item">
             {countries.name}
             <p>Capital: {countries.capital} </p>
@@ -23,6 +30,13 @@ const countries = ({ countries, loading }) => {
           </li>
         </div>
       ))}
+      {modalIsOpen === true ? (
+        <Modals
+          countries={countries}
+          toggleModalOpen={toggleModalOpen}
+          toggleModalClose={toggleModalClose}
+        />
+      ) : null}{" "}
     </ul>
   );
 };

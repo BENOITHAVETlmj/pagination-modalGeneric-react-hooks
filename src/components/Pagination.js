@@ -5,7 +5,6 @@ const Pagination = ({ countriesPerPage, totalCountries, paginate }) => {
 
   for (let i = 1; i <= Math.ceil(totalCountries / countriesPerPage); i++) {
     pageNumber.push(i);
-    console.log("la page", pageNumber);
   }
   return (
     <div>

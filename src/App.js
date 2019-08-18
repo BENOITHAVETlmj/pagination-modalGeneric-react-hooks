@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Countries from "./components/Countries";
 import Pagination from "./components/Pagination";
+import Button from "./components/Button";
 
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [countriesPerPage] = useState(8);
+  const [isLogin, setIsLogin] = useState(true);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     const FetchCountries = async () => {
@@ -16,6 +19,7 @@ const App = () => {
       const res = await axios.get("https://restcountries.eu/rest/v2/all");
       setCountries(res.data);
       setLoading(false);
+      console.log(res.data);
     };
     FetchCountries();
   }, []); // [] avoid useEffect() to run and make an never ended loop at each updates
@@ -30,6 +34,12 @@ const App = () => {
 
   const paginate = number => setCurrentPage(number);
 
+  const handleLogOut = () => setIsLogin(false);
+  const handleLogIn = () => setIsLogin(true);
+  const toggleModalOpen = () => setModalIsOpen(true);
+  const toggleModalClose = () => setModalIsOpen(false);
+  console.log(modalIsOpen);
+
   return (
     <div className="App">
       <header className="App-header" />
@@ -38,7 +48,18 @@ const App = () => {
           Countries of the World
           <i className="fas fa-globe-europe" />
         </h1>
-        <Countries loading={loading} countries={currentCountries} />
+        <Button
+          isLogin={isLogin}
+          handleLogIn={handleLogIn}
+          handleLogOut={handleLogOut}
+        />
+        <Countries
+          loading={loading}
+          countries={currentCountries}
+          modalIsOpen={modalIsOpen}
+          toggleModalOpen={toggleModalOpen}
+          toggleModalClose={toggleModalClose}
+        />
         <Pagination
           countriesPerPage={countriesPerPage}
           totalCountries={countries.length}

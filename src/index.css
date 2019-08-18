@@ -66,3 +66,23 @@ li:hover {
   justify-content: center;
   text-decoration: none;
 }
+
+.pop-up-action {
+  position: fixed;
+  left: 25%;
+  right: 25%;
+  top: 5%;
+  bottom: 25%;
+  margin: auto;
+  border-radius: 10px;
+  border: 1px solid black;
+  background: lightblue;
+  opacity: 0.95;
+  padding: 19px;
+  font-size: 15px;
+}
+.fa-window-close {
+  font-size: 25px;
+  color: rgb(57, 51, 148);
+  margin: 0px;
+}
