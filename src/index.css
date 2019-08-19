@@ -76,8 +76,8 @@ li:hover {
   margin: auto;
   border-radius: 10px;
   border: 1px solid black;
-  background: lightblue;
-  opacity: 0.95;
+  background: white;
+  opacity: 0.7;
   padding: 19px;
   font-size: 15px;
 }

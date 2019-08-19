@@ -55,7 +55,7 @@ const App = () => {
         />
         <Countries
           loading={loading}
-          countries={currentCountries}
+          currentCountries={currentCountries}
           modalIsOpen={modalIsOpen}
           toggleModalOpen={toggleModalOpen}
           toggleModalClose={toggleModalClose}

@@ -1,8 +1,9 @@
 import React from "react";
+import Country from "./Country";
 import Modals from "./Modals";
 
 const countries = ({
-  countries,
+  currentCountries,
   loading,
   modalIsOpen,
   toggleModalOpen,
@@ -12,32 +13,24 @@ const countries = ({
     return <h2>Loading....</h2>;
   }
   return (
-    <ul className="countryGroup">
-      {countries.map((countries, key) => (
-        <div className="country" key={key} onClick={() => toggleModalOpen()}>
+    <div className="countryGroup">
+      {currentCountries.map((countries, number) => (
+        <ul className="country" key={number} onClick={() => toggleModalOpen()}>
           <li className="list-group-item">
-            {countries.name}
-            <p>Capital: {countries.capital} </p>
-            <a
-              href={countries.flag}
-              target="_blank"
-              rel="noopener noreferrer"
-              key={countries.alpha3Code}
-              className="list-flag"
-            >
-              <img src={countries.flag} alt="country flag" className="flag" />
-            </a>
+            <Country
+              countries={countries}
+              index={number}
+              modalIsOpen={modalIsOpen}
+              toggleModalClose={toggleModalClose}
+              toggleModalOpen={toggleModalOpen}
+            />
           </li>
-        </div>
+        </ul>
       ))}
       {modalIsOpen === true ? (
-        <Modals
-          countries={countries}
-          toggleModalOpen={toggleModalOpen}
-          toggleModalClose={toggleModalClose}
-        />
-      ) : null}{" "}
-    </ul>
+        <Modals countries={countries} toggleModalClose={toggleModalClose} />
+      ) : null}
+    </div>
   );
 };
 
