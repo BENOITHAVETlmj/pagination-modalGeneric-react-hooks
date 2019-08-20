@@ -1,35 +1,21 @@
 import React from "react";
 import Country from "./Country";
-import Modals from "./Modals";
 
-const countries = ({
-  currentCountries,
-  loading,
-  modalIsOpen,
-  toggleModalOpen,
-  toggleModalClose
-}) => {
+const getObj = country => console.log(country); // get the full objet country
+
+const countries = ({ currentCountries, loading }) => {
   if (loading) {
     return <h2>Loading....</h2>;
   }
   return (
     <div className="countryGroup">
       {currentCountries.map((countries, number) => (
-        <ul className="country" key={number} onClick={() => toggleModalOpen()}>
+        <ul className="country" key={number} onClick={() => getObj(countries)}>
           <li className="list-group-item">
-            <Country
-              countries={countries}
-              index={number}
-              modalIsOpen={modalIsOpen}
-              toggleModalClose={toggleModalClose}
-              toggleModalOpen={toggleModalOpen}
-            />
+            <Country countries={countries} />
           </li>
         </ul>
       ))}
-      {modalIsOpen === true ? (
-        <Modals countries={countries} toggleModalClose={toggleModalClose} />
-      ) : null}
     </div>
   );
 };

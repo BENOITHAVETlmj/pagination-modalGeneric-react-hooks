@@ -3,6 +3,7 @@ import axios from "axios";
 import Countries from "./components/Countries";
 import Pagination from "./components/Pagination";
 import Button from "./components/Button";
+import Modals from "../src/components/Modals";
 
 const App = () => {
   const [countries, setCountries] = useState([]);
@@ -11,6 +12,7 @@ const App = () => {
   const [countriesPerPage] = useState(8);
   const [isLogin, setIsLogin] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  console.log(modalIsOpen);
 
   useEffect(() => {
     const FetchCountries = async () => {
@@ -38,7 +40,6 @@ const App = () => {
   const handleLogIn = () => setIsLogin(true);
   const toggleModalOpen = () => setModalIsOpen(true);
   const toggleModalClose = () => setModalIsOpen(false);
-  console.log(modalIsOpen);
 
   return (
     <div className="App">
@@ -56,16 +57,18 @@ const App = () => {
         <Countries
           loading={loading}
           currentCountries={currentCountries}
-          modalIsOpen={modalIsOpen}
           toggleModalOpen={toggleModalOpen}
-          toggleModalClose={toggleModalClose}
         />
+
         <Pagination
           countriesPerPage={countriesPerPage}
           totalCountries={countries.length}
           paginate={paginate}
         />
       </div>
+      {modalIsOpen === true ? (
+        <Modals toggleModalClose={toggleModalClose} modalIsOpen={modalIsOpen} />
+      ) : null}
     </div>
   );
 };

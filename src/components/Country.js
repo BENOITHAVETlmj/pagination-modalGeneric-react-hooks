@@ -1,8 +1,13 @@
 import React from "react";
 
-const Country = ({ countries }) => {
+const Country = ({
+  countries,
+  modalIsOpen,
+  toggleModalClose,
+  toggleModalOpen
+}) => {
   return (
-    <div>
+    <div onClick={() => toggleModalOpen}>
       {countries.name}
 
       <p>Capital: {countries.capital} </p>
