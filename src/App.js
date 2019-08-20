@@ -12,7 +12,7 @@ const App = () => {
   const [countriesPerPage] = useState(8);
   const [isLogin, setIsLogin] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  console.log(modalIsOpen);
+  console.log("modal toggle˜˜", modalIsOpen);
 
   useEffect(() => {
     const FetchCountries = async () => {
