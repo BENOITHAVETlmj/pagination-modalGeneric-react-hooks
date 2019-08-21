@@ -12,7 +12,7 @@ const modals = ({ toggleModalClose, country }) => {
         <div>Population : {country.population} people</div>
         <div>Region : {country.region}</div>
         <div>Subregion : {country.subregion}</div>
-        <div>Timezones: {country.timezones}</div>
+        <div>Timezones: {country.timezones[0]}</div>
         <div>Currencies: {country.currencies[0].name}</div>
       </section>
     </div>
