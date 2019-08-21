@@ -85,3 +85,7 @@ li:hover {
   color: rgb(57, 51, 148);
   margin: 0px;
 }
+
+section div {
+  margin-bottom: 15px;
+}

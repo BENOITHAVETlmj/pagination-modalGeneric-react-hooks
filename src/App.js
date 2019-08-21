@@ -10,6 +10,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [countriesPerPage] = useState(8);
+  const [country, SetCountryInModal] = useState([]);
   const [isLogin, setIsLogin] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   console.log("modal toggle˜˜", modalIsOpen);
@@ -41,7 +42,7 @@ const App = () => {
   const toggleModalOpen = () => setModalIsOpen(true);
   const toggleModalClose = () => setModalIsOpen(false);
 
-  const getObj = country => console.log(country);
+  const getObj = country => SetCountryInModal(country);
 
   return (
     <div className="App">
@@ -69,8 +70,8 @@ const App = () => {
           paginate={paginate}
         />
       </div>
-      {modalIsOpen === true ? (
-        <Modals toggleModalClose={toggleModalClose} modalIsOpen={modalIsOpen} />
+      {modalIsOpen ? (
+        <Modals toggleModalClose={toggleModalClose} country={country} />
       ) : null}
     </div>
   );
