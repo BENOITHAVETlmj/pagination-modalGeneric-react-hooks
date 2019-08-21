@@ -41,6 +41,8 @@ const App = () => {
   const toggleModalOpen = () => setModalIsOpen(true);
   const toggleModalClose = () => setModalIsOpen(false);
 
+  const getObj = country => console.log(country);
+
   return (
     <div className="App">
       <header className="App-header" />
@@ -58,6 +60,7 @@ const App = () => {
           loading={loading}
           currentCountries={currentCountries}
           toggleModalOpen={toggleModalOpen}
+          getObj={getObj}
         />
 
         <Pagination

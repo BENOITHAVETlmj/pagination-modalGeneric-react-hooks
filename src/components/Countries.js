@@ -1,9 +1,7 @@
 import React from "react";
 import Country from "./Country";
 
-const getObj = country => console.log(country); // get the full objet country
-
-const countries = ({ currentCountries, loading, toggleModalOpen }) => {
+const countries = ({ currentCountries, loading, toggleModalOpen, getObj }) => {
   if (loading) {
     return <h2>Loading....</h2>;
   }
