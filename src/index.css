@@ -39,6 +39,11 @@ h1 {
   box-shadow: 5px 5px lightgray;
 }
 
+.list-group-item:hover {
+  cursor:pointer;
+  background-color: lightgray;;
+  }
+
 li:hover {
   background-color: rgb(220, 237, 243);
 }
@@ -82,8 +87,14 @@ li:hover {
 }
 .fa-window-close {
   font-size: 25px;
-  color: rgb(57, 51, 148);
+  color: rgb(84, 78, 175);
   margin: 0px;
+}
+
+.fa-window-close:hover {
+  font-size: 25px;
+  color: rgb(30, 24, 112);
+  cursor:pointer;
 }
 
 section div {
