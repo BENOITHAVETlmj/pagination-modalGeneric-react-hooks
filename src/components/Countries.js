@@ -2,7 +2,7 @@ import React from "react";
 import Country from "./Country";
 import BeatLoader from "react-spinners/BeatLoader";
 
-const countries = ({ currentCountries, loading, toggleModalOpen, getObj }) => {
+const countries = ({ currentCountries, loading, setModalIsOpen, modalIsOpen, getObj, modalRef }) => {
   if (loading) {
     return <BeatLoader
       size={150}
@@ -13,7 +13,7 @@ const countries = ({ currentCountries, loading, toggleModalOpen, getObj }) => {
     <div className="countryGroup">
       {currentCountries.map((countries, number) => (
         <ul className="country" key={number} onClick={() => getObj(countries)}>
-          <Country countries={countries} toggleModalOpen={toggleModalOpen} />
+          <Country countries={countries} setModalIsOpen={setModalIsOpen} modalIsOpen={modalIsOpen} modalRef={modalRef} />
         </ul>
       ))}
     </div>

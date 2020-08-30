@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Countries from "./components/Countries";
 import Pagination from "./components/Pagination";
 import Button from "./components/Button";
 import Modals from "../src/components/Modals";
+import useClickOutside from './components/useClickOutside';
 
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [countriesPerPage] = useState(8);
-  const [country, SetCountryInModal] = useState([]);
+  const [countryInModal, SetCountryInModal] = useState([]);
   const [isLogin, setIsLogin] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -25,7 +26,7 @@ const App = () => {
     FetchCountries();
   }, []); // [] avoid useEffect() to run and make an never ended loop at each updates
 
-  //get the vurrents countries to display in da page
+  //get the currents countries to display in page
   const indexLastCountries = currentPage * countriesPerPage;
   const indexFirstCountries = indexLastCountries - countriesPerPage;
   const currentCountries = countries.slice(
@@ -37,10 +38,10 @@ const App = () => {
 
   const handleLogOut = () => setIsLogin(false);
   const handleLogIn = () => setIsLogin(true);
-  const toggleModalOpen = () => setModalIsOpen(true);
-  const toggleModalClose = () => setModalIsOpen(false);
-
   const getObj = country => SetCountryInModal(country);
+  const modalRef = useRef();
+
+  useClickOutside(modalRef, () => { modalIsOpen && setModalIsOpen(false) });
 
   return (
     <div className="App">
@@ -58,8 +59,10 @@ const App = () => {
         <Countries
           loading={loading}
           currentCountries={currentCountries}
-          toggleModalOpen={toggleModalOpen}
+          setModalIsOpen={setModalIsOpen}
+          modalIsOpen={modalIsOpen}
           getObj={getObj}
+          modalRef={modalRef}
         />
 
         <Pagination
@@ -68,9 +71,9 @@ const App = () => {
           paginate={paginate}
         />
       </div>
-      {modalIsOpen ? (
-        <Modals toggleModalClose={toggleModalClose} country={country} />
-      ) : null}
+      {modalIsOpen &&
+        < Modals setModalIsOpen={setModalIsOpen} modalIsOpen={modalIsOpen} country={countryInModal} />
+      }
     </div>
   );
 };
