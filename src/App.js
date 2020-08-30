@@ -13,7 +13,6 @@ const App = () => {
   const [country, SetCountryInModal] = useState([]);
   const [isLogin, setIsLogin] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  console.log("modal toggle˜˜", modalIsOpen);
 
   useEffect(() => {
     const FetchCountries = async () => {
@@ -22,7 +21,6 @@ const App = () => {
       const res = await axios.get("https://restcountries.eu/rest/v2/all");
       setCountries(res.data);
       setLoading(false);
-      console.log(res.data);
     };
     FetchCountries();
   }, []); // [] avoid useEffect() to run and make an never ended loop at each updates
