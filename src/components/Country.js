@@ -1,8 +1,8 @@
 import React from "react";
 
-const Country = ({ countries, toggleModalOpen }) => {
+const Country = ({ countries, setModalIsOpen, modalIsOpen, modalRef }) => {
   return (
-    <div onClick={() => toggleModalOpen()} className="list-group-item">
+    <div onClick={() => setModalIsOpen(!modalIsOpen)} ref={modalRef} className="list-group-item">
       <div>
         {countries.name}
 

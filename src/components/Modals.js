@@ -1,9 +1,9 @@
 import React from "react";
 
-const modals = ({ toggleModalClose, country }) => {
+const modals = ({ setModalIsOpen, modalIsOpen, country }) => {
   return (
     <div className="pop-up-action">
-      <i className="fas fa-window-close" onClick={() => toggleModalClose()} />
+      <i className="fas fa-window-close" onClick={() => setModalIsOpen(!modalIsOpen)} />
       <section>
         <h2>Name of the country: {country.name}</h2>
         <div>Native name : {country.nativeName}</div>
